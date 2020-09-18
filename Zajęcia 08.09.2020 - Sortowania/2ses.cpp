@@ -6,10 +6,16 @@ void sortowanie(int a[], int N)
     for (int i = 0; i < N-1; i++)  
     {  
         minpos = i;  
-        for (int k = i+1; k < N; k++) if (a[k] < a[minpos]) minpos = k;
-        int temp = a[minpos];  
-        a[minpos] = a[i];  
-        a[i] = temp;
+        for (int k = i+1; k < N; k++) 
+        {
+            if (a[k] < a[minpos])
+            {
+                minpos = k;
+                int temp = a[minpos];  
+                a[minpos] = a[i];  
+                a[i] = temp;
+            }
+        }
         for (int j = 0; j < N; j++) cout << a[j] << " ";
         cout << endl;
     }
