@@ -2,37 +2,21 @@
 using namespace std;
 int main()
 {
-    queue <char> k;
-    k.push('A');
-    k.push('B');
-    k.push('C');
-    k.push('D');
-    k.push('E');
+    vector <string> names(5);
+    names[0] = "Adam";
+    names[1] = "Bogdan";
+    names[2] = "Cezary";
+    names[3] = "Damian";
+    names[4] = "Edward";
+    long long lname = 5;
     int n;
     cin >> n;
-    for(int i = 1; i < n; i++)
+    while(n > 0)
     {
-        k.push(k.front());
-        k.push(k.front());
-        k.pop();
+        n -= lname;
+        lname *= 2;
     }
-    switch(k.front())
-    {
-        case 'A':
-            cout << "Adam";
-            break;
-        case 'B':
-            cout << "Bogdan";
-            break;
-        case 'C':
-            cout << "Cezary";
-            break;
-        case 'D':
-            cout << "Damian";
-            break;
-        case 'E':
-            cout << "Edward";
-            break;
-    }
+    lname /= 2;
+    cout << names[((int)ceil(double(n+lname)/(lname/5))-1)];
     return 0;
 }
