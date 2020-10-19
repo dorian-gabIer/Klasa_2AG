@@ -22,6 +22,6 @@ int main()
 		rs += a[i];
 		low = min(low, abs(ls - rs));
 	}
-	cout << (low==518 ? 516 : low);
+	cout << low;
 	return 0;
 }
