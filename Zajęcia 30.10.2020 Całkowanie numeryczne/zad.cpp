@@ -14,16 +14,8 @@ int main()
     int c = 10, c2, ite = 0;
     float h = 0.01, sum = 0;
     for (float i = 0; i < float(c); i += h) sum += (((g(i) - f(i) + g(i+h) - f(i+h))*h)/2);
-    while(!found)
-    {
-        if(g(ite) - f(ite) >= 26)
-        {
-            found = true;
-            c2 = ceil(g(ite) - f(ite) + 100);
-        }
-        ite++;
-    }
+    while(g(ite) - f(ite) < 26) ite++;
     cout << "Podpunkt a): " << setprecision(2) << fixed << sum << endl;
-    cout << "Podpunkt b): " << c2;
+    cout << "Podpunkt b): " << ite+100;
     return 0;
 }
