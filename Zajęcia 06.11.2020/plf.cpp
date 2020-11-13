@@ -54,14 +54,19 @@ string playfair(string text, char mat[5][5])
         if (text[i] != 32 && text[i] >= 'A' && text[i] <= 'Z') text2 += text[i];
     }
     if (text2.size() % 2 != 0) text2 += 'X';
-    for (int i = 0; i < text2.size()-1; i += 2)
+    for (int i = 0; i < text2.size(); i += 2)
     {
         int x1, x2, y1, y2;
         x1 = findpoint(text2[i], mat)->x;
         x2 = findpoint(text2[i + 1], mat)->x;
         y1 = findpoint(text2[i], mat)->y;
         y2 = findpoint(text2[i + 1], mat)->y;
-        if (x1 == x2) // same column
+        if(x1 == x2 && y1 == y2) // same letter
+        {
+            res += mat[y1][x1];
+            res += mat[y2][x2];
+        }
+        else if (x1 == x2) // same column
         {
             // I: going down
             res += mat[(y1+1) % 5][x1];
