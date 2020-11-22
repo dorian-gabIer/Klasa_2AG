@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-string dec2hex(int n)
+string dec2hex(long long n)
 {
     string res, p = "0123456789ABCDEF";
     while(n != 0)
@@ -12,7 +12,7 @@ string dec2hex(int n)
 }
 int main()
 {
-    int n, temp;
+    long long n, temp;
     cin >> n;
     string str = dec2hex(n);
 
