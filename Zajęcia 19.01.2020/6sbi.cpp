@@ -1,47 +1,30 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
-string dec2bin(long long n)
+string prime(unsigned long long n)
 {
-    string res;
-    while(1)
-    {
-        if(n == 0) break;
-        if(n%2 == 0)
-        {
-            res += "0";
-            n /= 2;
-        }
-        else
-        {
-            res += "1";
-            n-= 1;
-            n /= 2;
-        }
-    }
-    reverse(res.begin(), res.end());
-    return res;
+    if(n == 1) return "NIE";
+    for(int i = 2; i < n; i++) if (n % i == 0) return "NIE";
+    return "TAK";
 }
-bool prime(long long n)
+int sum(unsigned long long n)
 {
-	if (n < 2) return false;
-    if (n == 2) return true;
-	for (long long i = 2; i < n; i++)
-	{
-		if (n%i == 0) return false;
-	}
-	return true;
+    int sum = 0;
+    do
+    {
+        if (n % 2 == 0) n /= 2;
+        else n /= 2, sum++;
+    } while (n != 0);
+    return sum;
 }
 int main()
 {
-    long long n;
+    unsigned long long n;
+    string mat[5];
     for(int i = 0; i < 5; i++)
     {
         cin >> n;
-        string temp = dec2bin(n);
-        long long c = 0;
-        for(long long i = 0; i < temp.size(); i++) if(temp[i] == '1') c++;
-        if(prime(c)) cout << "TAK" << endl;
-        else cout << "NIE" << endl;
+        mat[i] = prime(sum(n));
     }
+    for(int i = 0; i < 5; i++) cout << mat[i] << endl;
     return 0;
 }
