@@ -2,21 +2,24 @@
 using namespace std;
 int main()
 {
-    int n, c = 0, l, p, r;
+    int n, mat[205], l = 0, c = 0, p;
     cin >> n;
-    l = 0, p = (n-1)/2, r = n-1;
-    int numbs[n];
-    for(int i = 0; i < n; i++) cin >> numbs[i];
-    while(l < r && c < 3)
+    p = n - 1;
+    int piv = floor(n/2);
+    for(int i = 0; i < n; i++) cin >> mat[i];
+    while(l >= 0)
     {
-        while(numbs[l] < p) l++;
-        while(numbs[r] > p) r--;
-        if(l <= r)
+        if(mat[p] < mat[piv])
         {
-            cout << numbs[l] << " " << numbs[r] << endl;
-            swap(numbs[l], numbs[r]);
-            c++;
+            if(mat[l] > mat[piv])
+            {
+                cout << mat[l++] << " " << mat[p--] << endl;
+                c++;
+            }
+            else l++;
         }
+        else p--;
+        if(c == 3) break;
     }
     return 0;
 }
