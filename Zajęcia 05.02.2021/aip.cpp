@@ -1,17 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
-int bin2dec(string n)
+string bin2dec(string n)
 {
-    int sum = 0;
-    string temp;
-    reverse(n.begin(), n.end());
-    for (int i = 0; i < n.size(); i++)
-    {
-        temp = n[i];
-        sum += (stoi(temp) * pow(2, i));
-        temp = "";
+    string res;
+    int numb = 0;
+    for (int j = 0; j < 4; j++) {
+        numb = 0;
+        for (int i = j * 8; i < j * 8 + 8; i++)
+        {
+            numb = numb * 2 + int(n[i] - '0');
+        }
+        res = res + to_string(numb);
+        if (j < 3) res = res + ".";
     }
-    return sum;
+    return res;
 }
 string mask(int n)
 {
@@ -74,18 +76,7 @@ int main()
     string ipbin = dec2bin(ip1) + dec2bin(ip2) + dec2bin(ip3) + dec2bin(ip4);
     string ipsbin = "00000000000000000000000000000000";
     for (int i = 0; i < 32; i++) if (mbin[i] == '1' && ipbin[i] == '1') ipsbin[i] = '1';
-    string ipsbin1 = "00000000", ipsbin2 = "00000000", ipsbin3 = "00000000", ipsbin4 = "00000000";
-    int ipsbinc = 0;
-    for (int i = 0; i < 32; i++)
-    {
-        if (i < 8) ipsbin1[ipsbinc] = ipsbin[i];
-        else if(i < 16) ipsbin2[ipsbinc] = ipsbin[i];
-        else if (i < 24) ipsbin3[ipsbinc] = ipsbin[i];
-        else if (i < 32) ipsbin4[ipsbinc] = ipsbin[i];
-        if (ipsbinc >= 8) ipsbinc = 0;
-        ipsbinc++;
-    }
-    cout << bin2dec(ipsbin1) << "." << bin2dec(ipsbin2) << "." << bin2dec(ipsbin3) << "." << bin2dec(ipsbin4) << endl;
+    cout << bin2dec(ipsbin) << endl;
     string negmbin = "00000000000000000000000000000000";
     for (int i = 0; i < 32; i++) negmbin[i] = neg(mbin[i]);
     string ipbbin = "00000000000000000000000000000000";
@@ -94,23 +85,7 @@ int main()
         ipbbin[i] = '1';
         if (ipsbin[i] == '0' && negmbin[i] == '0')  ipbbin[i] = '0';
     }
-    ipsbin1 = "00000000", ipsbin2 = "00000000", ipsbin3 = "00000000", ipsbin4 = "00000000";
-    ipsbinc = 0;
-    for (int i = 0; i < 32; i++)
-    {
-        if (i < 8) ipsbin1[ipsbinc] = ipbbin[i];
-        else if (i < 16) ipsbin2[ipsbinc] = ipbbin[i];
-        else if (i < 24) ipsbin3[ipsbinc] = ipbbin[i];
-        else if (i < 32) ipsbin4[ipsbinc] = ipbbin[i];
-        if (ipsbinc >= 8) ipsbinc = 0;
-        ipsbinc++;
-    }
-    int res1 = bin2dec(ipsbin2), res2 = bin2dec(ipsbin3), res3 = bin2dec(ipsbin4);
-    cout << bin2dec(ipsbin1) << ".";
-    if (res1 == 127) res1 = 255;
-    if (res2 == 127) res2 = 255;
-    if (res3 == 127) res3 = 255;
-    cout << res1 << "." << res2 << "." << res3 << endl;
+    cout << bin2dec(ipbbin) << endl;
     cout << dec2bin(ip1) << " " << dec2bin(ip2) << " " << dec2bin(ip3) << " " << dec2bin(ip4) << endl;
     goodshow(mbin);
     cout << endl;
